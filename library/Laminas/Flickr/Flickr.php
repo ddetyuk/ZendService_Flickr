@@ -8,20 +8,14 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr;
+namespace Laminas\Flickr;
 
 use DOMDocument;
 use DOMXPath;
-use Zend\I18n\Validator\Int as IntValidator;
-use Zend\Http\Client as HttpClient;
-use Zend\Http\Request as HttpRequest;
-use Zend\Validator\Between as BetweenValidator;
+use Laminas\Http\Client as HttpClient;
+use Laminas\Http\Request as HttpRequest;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
+
 class Flickr
 {
     /**

@@ -8,17 +8,10 @@
  * @package   Zend_Service
  */
 
-namespace ZendServiceTest\Flickr\TestAsset;
+namespace LaminasTest\Flickr\TestAsset;
 
-use ZendService\Flickr\Flickr;
+use Laminas\Flickr\Flickr;
 
-/**
- * @category   Zend
- * @package    Zend_Service_Flickr
- * @subpackage UnitTests
- * @group      Zend_Service
- * @group      Zend_Service_Flickr
- */
 class FlickrProtectedMethodProxy extends Flickr
 {
     public function proxyValidateUserSearch(array $options)

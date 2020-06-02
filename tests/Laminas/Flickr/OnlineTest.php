@@ -8,11 +8,11 @@
  * @package   Zend_Service
  */
 
-namespace ZendServiceTest\Flickr;
+namespace LaminasTest\Flickr;
 
-use Zend\Http\Client\Adapter\Socket as SocketAdapter;
-use ZendService\Flickr\Flickr;
-use ZendService\Flickr\Exception\OutOfBoundsException;
+use Laminas\Http\Client\Adapter\Socket as SocketAdapter;
+use Laminas\Flickr\Flickr;
+use Laminas\Flickr\Exception\OutOfBoundsException;
 
 /**
  * @category   Zend
@@ -21,7 +21,7 @@ use ZendService\Flickr\Exception\OutOfBoundsException;
  * @group      Zend_Service
  * @group      Zend_Service_Flickr
  */
-class OnlineTest extends \PHPUnit_Framework_TestCase
+class OnlineTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reference to Flickr service consumer object
@@ -42,7 +42,7 @@ class OnlineTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (!constant('TESTS_ZEND_SERVICE_FLICKR_ONLINE_ENABLED')) {
             $this->markTestSkipped('Zend_Service_Flickr online tests are not enabled');

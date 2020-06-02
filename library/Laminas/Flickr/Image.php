@@ -8,15 +8,10 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr;
+namespace Laminas\Flickr;
 
 use DOMElement;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
 class Image
 {
     /**

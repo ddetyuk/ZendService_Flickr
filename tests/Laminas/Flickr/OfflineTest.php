@@ -8,12 +8,12 @@
  * @package   Zend_Service
  */
 
-namespace ZendServiceTest\Flickr;
+namespace LaminasTest\Flickr;
 
-use Zend\Http\Client\Adapter\Socket as SocketAdapter;
-use Zend\Http\Client\Adapter\Test as TestAdapter;
-use ZendService\Flickr\Flickr;
-use ZendService\Flickr\Exception\OutOfBoundsException;
+use Laminas\Http\Client\Adapter\Socket as SocketAdapter;
+use Laminas\Http\Client\Adapter\Test as TestAdapter;
+use Laminas\Flickr\Flickr;
+use Laminas\Flickr\Exception\OutOfBoundsException;
 
 /**
  * @category   Zend
@@ -22,7 +22,7 @@ use ZendService\Flickr\Exception\OutOfBoundsException;
  * @group      Zend_Service
  * @group      Zend_Service_Flickr
  */
-class OfflineTest extends \PHPUnit_Framework_TestCase
+class OfflineTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reference to Flickr service consumer object
@@ -64,7 +64,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp():void
     {
         $this->flickr      = new Flickr(constant('TESTS_ZEND_SERVICE_FLICKR_ONLINE_APIKEY'));
         $this->flickrProxy = new TestAsset\FlickrProtectedMethodProxy(
@@ -139,7 +139,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
         foreach ($resultSetIds as $resultSetId) {
             $this->httpClientAdapterTest->setResponse($this->loadResponse(__FUNCTION__ . "-result_$resultSetId"));
             $result = $resultSet->current();
-            $this->assertInstanceOf('ZendService\Flickr\Result', $result);
+            $this->assertInstanceOf('Laminas\Flickr\Result', $result);
             $resultSet->next();
         }
 
@@ -158,7 +158,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
         $this->httpClientAdapterTest->setResponse($this->loadResponse(__FUNCTION__));
 
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\RuntimeException',
+            'Laminas\Flickr\Exception\RuntimeException',
             'User not found'
         );
         $this->flickr->userSearch('2e38a9d9425d7e2c9d0788455e9ccc61');
@@ -176,7 +176,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
         $this->httpClientAdapterTest->setResponse($this->loadResponse(__FUNCTION__));
 
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\RuntimeException',
+            'Laminas\Flickr\Exception\RuntimeException',
             'User not found'
         );
         $this->flickr->userSearch('2e38a9d9425d7e2c9d0788455e9ccc61@example.com');
@@ -190,7 +190,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGetIdByUsernameExceptionUsernameEmpty()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'supply a username'
         );
         $this->flickr->getIdByUsername('0');
@@ -204,7 +204,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGetIdByEmailExceptionEmailEmpty()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'supply an e-mail'
         );
         $this->flickr->getIdByEmail('0');
@@ -218,7 +218,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGetImageDetailsExceptionIdEmpty()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'supply a photo'
         );
         $this->flickr->getImageDetails('0');
@@ -232,7 +232,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateUserSearchExceptionPerPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"per_page" option'
         );
         $this->flickrProxy->proxyValidateUserSearch(array('per_page' => -1));
@@ -246,7 +246,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateUserSearchExceptionPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"page" option'
         );
         $this->flickrProxy->proxyValidateUserSearch(array('per_page' => 10, 'page' => 'foo'));
@@ -260,7 +260,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateTagSearchExceptionPerPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"per_page" option'
         );
         $this->flickrProxy->proxyValidateTagSearch(array('per_page' => -1));
@@ -274,7 +274,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateTagSearchExceptionPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"page" option'
         );
         $this->flickrProxy->proxyValidateTagSearch(array('per_page' => 10, 'page' => 1.23));
@@ -288,7 +288,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testCompareOptionsExceptionOptionInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'parameters are invalid'
         );
         $this->flickrProxy->proxyCompareOptions(array('unexpected' => null), array());
@@ -302,7 +302,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testTagSearchExceptionOptionInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'parameters are invalid'
         );
         $this->flickr->tagSearch('irrelevant', array('unexpected' => null));
@@ -370,7 +370,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
         foreach ($resultSetIds as $resultSetId) {
             $this->httpClientAdapterTest->setResponse($this->loadResponse(__FUNCTION__ . "-result_$resultSetId"));
             $result = $resultSet->current();
-            $this->assertInstanceOf('ZendService\Flickr\Result', $result);
+            $this->assertInstanceOf('Laminas\Flickr\Result', $result);
             $resultSet->next();
         }
 
@@ -385,7 +385,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGroupPoolGetPhotosExceptionOptionInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'parameters are invalid'
         );
         $this->flickr->groupPoolGetPhotos('irrelevant', array('unexpected' => null));
@@ -399,7 +399,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateGroupPoolGetPhotosExceptionPerPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"per_page" option'
         );
         $this->flickrProxy->proxyValidateGroupPoolGetPhotos(array('per_page' => -1));
@@ -413,7 +413,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testValidateGroupPoolGetPhotosExceptionPageInvalid()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\DomainException',
+            'Laminas\Flickr\Exception\DomainException',
             '"page" option'
         );
         $this->flickrProxy->proxyValidateGroupPoolGetPhotos(array('per_page' => 10, 'page' => 1.23));
@@ -431,7 +431,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
         $this->httpClientAdapterTest->setResponse($this->loadResponse(__FUNCTION__));
 
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\RuntimeException',
+            'Laminas\Flickr\Exception\RuntimeException',
             'Group not found'
         );
         $this->flickr->groupPoolGetPhotos('2e38a9d9425d7e2c9d0788455e9ccc61');
@@ -445,7 +445,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGroupPoolGetPhotosExceptionGroupIdEmpty()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'supply a group'
         );
         $this->flickr->groupPoolGetPhotos('0');
@@ -459,7 +459,7 @@ class OfflineTest extends \PHPUnit_Framework_TestCase
     public function testGroupPoolGetPhotosExceptionGroupIdArray()
     {
         $this->setExpectedException(
-            'ZendService\Flickr\Exception\InvalidArgumentException',
+            'Laminas\Flickr\Exception\InvalidArgumentException',
             'supply a group'
         );
         $this->flickr->groupPoolGetPhotos(array());

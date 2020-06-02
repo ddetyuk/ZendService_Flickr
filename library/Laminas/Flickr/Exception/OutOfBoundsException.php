@@ -8,13 +8,8 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr\Exception;
+namespace Laminas\Flickr\Exception;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
 class OutOfBoundsException extends \OutOfBoundsException
     implements ExceptionInterface
 {

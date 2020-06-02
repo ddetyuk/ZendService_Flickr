@@ -8,16 +8,11 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr;
+namespace Laminas\Flickr;
 
 use DOMElement;
 use DOMXPath;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
 class Result
 {
     /**

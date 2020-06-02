@@ -8,13 +8,9 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr\Exception;
+namespace Laminas\Flickr\Exception;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
-class RuntimeException extends \RuntimeException implements ExceptionInterface
+class InvalidArgumentException extends \InvalidArgumentException
+        implements ExceptionInterface
 {
 }

@@ -8,17 +8,12 @@
  * @package   Zend_Service
  */
 
-namespace ZendService\Flickr;
+namespace Laminas\Flickr;
 
 use DOMDocument;
 use DOMXPath;
 use SeekableIterator;
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @subpackage Flickr
- */
 class ResultSet implements SeekableIterator
 {
     /**
